@@ -33,7 +33,9 @@ li.selected a { color: #D14836; background: #ffebe8; }
 li.feed a { padding-top: 4.5px; padding-bottom: 4.5px; }
 
 section.content {
-	-webkit-box-flex: 1; overflow: auto; height: 100%; padding: 0; background: url(../i/github_icon.png); }
+	-webkit-box-flex: 1; overflow: auto; height: 100%; padding: 0;
+	background: url(../i/blacktocat.svg) no-repeat center center;
+	background-size: auto 90%; }
 section.content > div { padding: 18px; padding-bottom: 100%: }
 
 li.article {
