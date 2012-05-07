@@ -16,10 +16,12 @@ Download and setup application:
 
 Create `config.json` in project path with following settings:
 
-* `port` - Port on which application server should listen
+* `port` - Port for application server
 * `username` - Your GitHub username
 * `token` - Find it in your news feed url
 
 Start server:
 
 	$ npm start
+
+Enjoy your Feed Reader on configured port
