@@ -7,14 +7,19 @@ Individual sections can be unsubscribed.
 
 ## Installation
 
+Download and setup application:
+
 	$ git clone https://github.com/medikoo/github-news-reader.git
+	$ cd github-news-reader
 	$ npm install
 	$ npm run-script setup
 
 Create `config.json` in project path with following settings:
 
 * `port` - Port on which application server should listen
-* `username` - Your github username
-* `token` - Copy it from your news feed url
+* `username` - Your GitHub username
+* `token` - Find it in your news feed url
+
+Start server:
 
 	$ npm start
