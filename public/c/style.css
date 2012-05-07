@@ -1,0 +1,56 @@
+* { margin: 0; padding: 0; }
+ul { list-style: none; }
+html, button, input, select, textarea {
+	font-family: sans-serif; font-size: 13px; }
+body {
+	padding: 0; color: #333; background: white; min-width: 750px;
+	max-width: 1560px; }
+
+ul.nest-0 > li > h3, ul.nest-0 > li > a { padding-left: 20px; }
+ul.nest-1 > li > h3, ul.nest-1 > li > a { padding-left: 40px; }
+ul.nest-2 > li > h3, ul.nest-2 > li > a { padding-left: 60px; }
+ul.nest-3 > li > h3, ul.nest-3 > li > a { padding-left: 80px; }
+
+h2, h3, a { font-size: 13px; }
+section.aside h3, section.aside a { padding-right: 10px; }
+
+ul.nest-0 > li > h3 { color: #888; font-size: 15px; }
+
+h3, a { line-height: 18px; }
+
+a { color: #666; cursor: pointer; }
+a:hover { color: #888; }
+
+section.aside a { cursor: pointer; display: block; }
+section.aside a:hover { background: #eee; }
+
+html { height: 100%; }
+body { display: -webkit-box; -webkit-box-orient: horizontal; height: 100%; }
+
+section.aside { width: 250px; overflow: auto; height: 100%; }
+section.aside > ul { padding: 18px 0; border-right: 1px solid #ccc; }
+li.selected a { color: #D14836; background: #ffebe8; }
+li.feed a { padding-top: 4.5px; padding-bottom: 4.5px; }
+
+section.content {
+	-webkit-box-flex: 1; overflow: auto; height: 100%; padding: 0; background: url(../i/github_icon.png); }
+section.content > div { padding: 18px; padding-bottom: 100%: }
+
+li.article {
+	border: 1px solid #ddd; box-shadow: 0 0 4px #e3e5eb; padding: 8px 10px;
+	margin: 9px 0 18px; overflow: auto; background: white; }
+
+li.article h2 a, li.article div.title, li.article div.title a {
+	font-weight: bold; font-size: 14px; line-height: 18px; }
+li.article div.author { font-size: 13px; line-height: 18px; color: #666; }
+
+div.details { margin: 18px; }
+blockquote { margin: 9px; line-height: 18px; }
+
+p.controls { text-align: right; }
+p.controls input { font-weight: bold; }
+
+blockquote p.email-quoted { padding-left: 18px; color: #888; }
+p.email-quoted a { color: inherit; }
+blockquote p:not(.email-quoted) + p.email-quoted,
+blockquote p.email-quoted + p { margin-top: 18px; }
