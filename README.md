@@ -12,7 +12,6 @@ Download and setup application:
 	$ git clone https://github.com/medikoo/github-news-reader.git
 	$ cd github-news-reader
 	$ npm install
-	$ npm run-script setup
 
 Create `config.json` in project path with following settings:
 
@@ -24,4 +23,4 @@ Start server:
 
 	$ npm start
 
-Enjoy your Feed Reader on configured port
+Wait for _Client application updated_ message and enjoy your News Reader on configured port

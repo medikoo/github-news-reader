@@ -8,6 +8,7 @@
     "ent": "0.0.4",
     "es5-ext": "git://github.com/medikoo/es5-ext.git",
     "event-emitter": "git://github.com/medikoo/event-emitter.git",
+    "deferred": "git://github.com/medikoo/deferred.git",
     "feedparser": "0.9.x",
     "github": "0.1.x",
     "node-static": "0.5.x",
@@ -23,7 +24,6 @@
     "node": "*"
   },
   "scripts": {
-    "setup": "node ./node_modules/webmake/bin/webmake ./lib/clientpublic/main.js ./public/j/main.js",
     "start": "node ./lib/server/server.js"
   }
 }
