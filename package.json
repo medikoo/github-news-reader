@@ -26,8 +26,8 @@
   },
   "scripts": {
     "forever-start": "node bin/start",
-    "forever-stop": "node node_modules/forever/bin/forever stop lib/server/server.js",
-    "forever-restart": "npm run-script forever-stop & npm run-script forever-start",
+    "forever-stop": "node bin/stop",
+    "forever-restart": "node bin/restart",
     "start": "node ./lib/server/server.js"
   }
 }

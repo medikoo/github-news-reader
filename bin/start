@@ -7,13 +7,11 @@ var time = require('es5-ext/lib/Date/get-format')('%m-%d.%H:%M:%S.%L')
 	+ '--logFile ' + root + '/log/' + time + '.log '
 	+ '--outFile ' + root + '/log/' + time + '.out.log '
 	+ '--errFile ' + root + '/log/' + time + '.err.log '
-	+ 'lib/server/server.js';
+	+ root + '/lib/server/server.js';
 
-require('child_process').exec(command, { env: process.env },
-	function (error, out, err) {
-		if (error) {
-			console.error(error);
-		}
-		process.stdout.write(out);
-		process.stderr.write(err);
-	});
+(module.exports = require('deferred').promisify(require('child_process').exec)(
+	command, { env: process.env }
+).match(function (out, err) {
+	process.stdout.write(out);
+	process.stderr.write(err);
+})).end();

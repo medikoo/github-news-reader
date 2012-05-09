@@ -1,0 +1,11 @@
+#!/usr/bin/env node
+
+var command = 'node node_modules/forever/bin/forever stop ' + process.cwd() +
+	'/lib/server/server.js';
+
+(module.exports = require('deferred').promisify(require('child_process').exec)(
+	command, { env: process.env }
+).match(function (out, err) {
+	process.stdout.write(out);
+	process.stderr.write(err);
+})).end();
