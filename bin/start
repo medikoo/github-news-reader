@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-var time = require('es5-ext/lib/Date/get-format')('%m-%d.%H:%M:%S.%L')
-	.call(new Date())
+var time = require('es5-ext/lib/Date/prototype/format')
+	.call(new Date(), '%m-%d.%H:%M:%S.%L')
   , root = process.cwd()
   , command = 'node node_modules/forever/bin/forever start '
 	+ '--logFile ' + root + '/log/' + time + '.log '
