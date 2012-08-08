@@ -11,14 +11,14 @@
     "deferred": "0.5.x",
     "feedparser": "0.9.x",
     "github": "0.1.x",
-    "node-static": "0.5.x",
+    "node-static": "0.6.x",
     "request": "2.x",
     "socket.io": "0.9.x",
     "webmake": "0.3.x"
   },
   "devDependencies": {},
   "optionalDependencies": {
-    "forever": "0.9.x",
+    "forever": "0.10.x",
     "nodemailer": "0.3.x"
   },
   "engines": {
