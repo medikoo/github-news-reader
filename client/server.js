@@ -1,7 +1,7 @@
 'use strict';
 
 var isArray = Array.isArray
-  , copy    = require('es5-ext/array/#/copy')
+  , aFrom   = require('es5-ext/array/from')
   , forEach = require('es5-ext/object/for-each')
   , data    = require('./data')
   , socket  = io.connect(location.protocol + '//' + location.host)
@@ -11,7 +11,7 @@ var isArray = Array.isArray
 forEach(data, function self(value, name, context) {
 	path.push(name);
 	if (isArray(value)) {
-		value.$path = copy.call(path);
+		value.$path = aFrom(path);
 		value.forEach(function (article) {
 			article.on('update', function (e) {
 				if (e && (e.type === 'read')) {
