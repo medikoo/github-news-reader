@@ -33,6 +33,8 @@ log = function (subject, body) {
 	logToMail(subject, body);
 };
 
+if (config.auth) github.authenticate(config.auth);
+
 logAPIError = memoize(function (message, article, err) {
 	log("API responded with an error", article.link + ' ' + err);
 }, { length: 1, maxAge: 15 * 60 * 1000 });
