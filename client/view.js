@@ -18,7 +18,7 @@ var isArray    = Array.isArray
 
   , articleDOM;
 
-articleDOM = memoize.call(function (article) {
+articleDOM = memoize(function (article) {
 	var el, body
 	el = this.li({ 'class': 'article' },
 		 !article.skipTitle &&
