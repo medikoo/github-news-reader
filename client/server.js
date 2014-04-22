@@ -1,8 +1,8 @@
 'use strict';
 
 var isArray = Array.isArray
-  , copy    = require('es5-ext/lib/Array/prototype/copy')
-  , forEach = require('es5-ext/lib/Object/for-each')
+  , copy    = require('es5-ext/array/#/copy')
+  , forEach = require('es5-ext/object/for-each')
   , data    = require('./data')
   , socket  = io.connect(location.protocol + '//' + location.host)
 

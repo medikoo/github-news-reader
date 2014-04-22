@@ -4,16 +4,15 @@ var isArray    = Array.isArray
   , call       = Function.prototype.call
   , max        = Math.max
   , keys       = Object.keys
-  , last       = require('es5-ext/lib/Array/prototype/last')
-  , format     = require('es5-ext/lib/Date/prototype/format')
-  , memoize    = require('es5-ext/lib/Function/prototype/memoize')
-  , pluck      = require('es5-ext/lib/Function/pluck')
-  , not        = require('es5-ext/lib/Function/prototype/not')
-  , count      = require('es5-ext/lib/Object/count')
-  , map        = require('es5-ext/lib/Object/map')
-  , mapToArray = require('es5-ext/lib/Object/map-to-array')
-  , lcSort     = call.bind(
-		require('es5-ext/lib/String/prototype/case-insensitive-compare'))
+  , last       = require('es5-ext/array/#/last')
+  , format     = require('es5-ext/date/#/format')
+  , pluck      = require('es5-ext/function/pluck')
+  , not        = require('es5-ext/function/#/not')
+  , count      = require('es5-ext/object/count')
+  , map        = require('es5-ext/object/map')
+  , mapToArray = require('es5-ext/object/to-array')
+  , memoize    = require('memoizee/lib/regular')
+  , lcSort     = call.bind(require('es5-ext/string/#/case-insensitive-compare'))
   , domjs      = require('domjs/lib/html5')(document)
   , data       = require('./data')
 

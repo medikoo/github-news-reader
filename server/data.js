@@ -1,11 +1,11 @@
 'use strict';
 
-var isFunction = require('es5-ext/lib/Function/is-function')
-  , partial    = require('es5-ext/lib/Function/prototype/partial')
-  , isNumber   = require('es5-ext/lib/Number/is-number')
-  , isObject   = require('es5-ext/lib/Object/is-object')
-  , contains   = require('es5-ext/lib/String/prototype/contains')
-  , startsWith = require('es5-ext/lib/String/prototype/starts-with')
+var isFunction = require('es5-ext/function/is-function')
+  , partial    = require('es5-ext/function/#/partial')
+  , isNumber   = require('es5-ext/number/is-number')
+  , isObject   = require('es5-ext/object/is-object')
+  , contains   = require('es5-ext/string/#/contains')
+  , startsWith = require('es5-ext/string/#/starts-with')
   , memoize    = require('memoizee/lib/primitive')
   , github     = new (require('github'))({ version: "3.0.0" })
   , decode     = require('ent').decode

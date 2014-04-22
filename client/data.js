@@ -1,11 +1,11 @@
 'use strict';
 
 var isArray = Array.isArray
-  , pluck   = require('es5-ext/lib/Function/pluck')
-  , not     = require('es5-ext/lib/Function/prototype/not')
-  , count   = require('es5-ext/lib/Object/count')
-  , forEach = require('es5-ext/lib/Object/for-each')
-  , map     = require('es5-ext/lib/Object/map')
+  , pluck   = require('es5-ext/function/pluck')
+  , not     = require('es5-ext/function/#/not')
+  , count   = require('es5-ext/object/count')
+  , forEach = require('es5-ext/object/for-each')
+  , map     = require('es5-ext/object/map')
   , ee      = require('event-emitter')
 
   , markRead;

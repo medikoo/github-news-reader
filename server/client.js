@@ -1,7 +1,7 @@
 'use strict';
 
-var find    = require('es5-ext/lib/Array/prototype/find')
-  , forEach = require('es5-ext/lib/Object/for-each')
+var find    = require('es5-ext/array/#/find')
+  , forEach = require('es5-ext/object/for-each')
   , config  = require('../env')
   , data    = require('./data')
   , webmake = require('./webmake')

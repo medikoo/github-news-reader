@@ -6,7 +6,7 @@
   "dependencies": {
     "domjs": "0.2.x",
     "ent": "0.0.5",
-    "es5-ext": "0.8.x",
+    "es5-ext": "~0.10.1",
     "event-emitter": "0.1.x",
     "deferred": "0.5.x",
     "feedparser": "0.13.x",

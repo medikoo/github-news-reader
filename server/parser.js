@@ -2,7 +2,7 @@
 
 var feedParser = require('feedparser')
   , request    = require('request')
-  , memoize    = require('es5-ext/lib/Function/prototype/memoize')
+  , memoize    = require('memoizee/lib/regular')
   , ee         = require('event-emitter')
 
   , Parser;
