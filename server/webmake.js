@@ -13,7 +13,7 @@ var isArray      = Array.isArray
   , writeFile    = promisify(require('fs').writeFile)
   , webmake      = require('webmake')
 
-  , data, root = resolve(__dirname, '../'), build, inProgress;
+  , data, root = resolve(__dirname, '../'), inProgress;
 
 module.exports = function self(save) {
 	if (save && inProgress) {
@@ -33,31 +33,31 @@ module.exports = function self(save) {
 				});
 				return obj;
 			}, ['author', 'date', 'description', 'guid', 'headTitle', 'link', 'read',
-				 'skipAuthor', 'skipTitle', 'title']);
-		} else if (value) {
+				'skipAuthor', 'skipTitle', 'title']);
+		}
+		if (value) {
 			value = compact(map(value, self));
 			return count(value) ? value : null;
-		} else {
-			return null;
 		}
+		return null;
 	}));
 
-	return inProgress = webmake(resolve(root, 'lib/client/index.js'))(
+	return (inProgress = webmake(resolve(root, 'lib/client/index.js'))(
 		function (content) {
 			var index = content.indexOf('%RSS%');
 			content = content.slice(0, index) +
 				stringify(stringify(copy)).slice(1, -1) + content.slice(index + 5);
 			if (save) {
-				return writeFile(resolve(root, 'public/j/main.js'), content)(function () {
+				return writeFile(resolve(root, 'public/j/main.js'),
+					content)(function () {
 					console.log("Client application updated");
 					inProgress = false;
 				});
-			} else {
-				inProgress = false;
 			}
+			inProgress = false;
 			return content;
 		}
-	);
+	));
 };
 
-data = require('./data')
+data = require('./data');
