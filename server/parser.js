@@ -43,6 +43,7 @@ Parser.prototype = ee({
 			console.log("Fetch feed");
 			this.parser = new FeedParser();
 			this.parser.on('error', function (e) {
+				if (res.headers.status === '304 Not Modified') return;
 				console.log("Parse error", e.stack);
 			});
 			this.parser.on('readable', function () {
