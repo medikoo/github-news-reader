@@ -2,14 +2,14 @@
 
 var FeedParser = require('feedparser')
   , request    = require('request')
-  , memoize    = require('memoizee/lib/regular')
+  , memoize    = require('memoizee/lib/primitive')
   , ee         = require('event-emitter')
 
   , Parser;
 
 Parser = module.exports = function (uri) {
 	this.onArticle = this.onArticle.bind(this,
-		memoize(this.parseArticle.bind(this), 1));
+		memoize(this.parseArticle.bind(this), { length: 1 }));
 	this._request = { uri: uri, headers: {}, timeout: 3000 };
 };
 
