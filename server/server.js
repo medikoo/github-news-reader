@@ -19,7 +19,7 @@ server = module.exports = createServer(function (req, res) {
 		res.writeHead(200, { 'Content-Type':
 			'application/javascript; charset=utf-8',
 			'Cache-Control': 'no-cache' });
-		webmake()(res.end.bind(res)).done();
+		webmake().done(res.end.bind(res));
 		return;
 	}
 	st(req, res);
