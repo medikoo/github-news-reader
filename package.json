@@ -17,13 +17,8 @@
     "socket.io": "0.9.x",
     "webmake": "0.3.x"
   },
-  "devDependencies": {},
   "optionalDependencies": {
-    "forever": "0.10.x",
     "nodemailer": "0.3.x"
-  },
-  "engines": {
-    "node": "*"
   },
   "scripts": {
     "start": "node ./lib/server/server.js"
