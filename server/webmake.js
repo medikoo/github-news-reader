@@ -42,7 +42,7 @@ module.exports = function self(save) {
 		return null;
 	}));
 
-	return (inProgress = webmake(resolve(root, 'lib/client/index.js'))(
+	return (inProgress = webmake(resolve(root, 'client/index.js'))(
 		function (content) {
 			var index = content.indexOf('%RSS%');
 			content = content.slice(0, index) +
