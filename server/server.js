@@ -4,15 +4,15 @@ Error.stackTraceLimit = Infinity;
 
 var resolve      = require('path').resolve
   , createServer = require('http').createServer
-  , StaticServer = require('node-static').Server
+  , st           = require('st')
   , config       = require('../env')
   , webmake      = require('./webmake')
 
   , root = resolve(__dirname, '../')
 
-  , server, staticServer;
+  , server;
 
-staticServer = new StaticServer(resolve(root, 'public'));
+st = st({ path: resolve(root, 'public'), index: 'index.html' });
 
 server = module.exports = createServer(function (req, res) {
 	if (config.dev && (req.url === '/j/main.js')) {
@@ -20,9 +20,9 @@ server = module.exports = createServer(function (req, res) {
 			'application/javascript; charset=utf-8',
 			'Cache-Control': 'no-cache' });
 		webmake()(res.end.bind(res)).done();
-	} else {
-		staticServer.serve(req, res);
+		return;
 	}
+	st(req, res);
 });
 server.listen(config.port);
 
