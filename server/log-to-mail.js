@@ -13,9 +13,7 @@ if (config.devMail) {
 	}
 }
 
-
 module.exports = function (subject, body) {
-	var opts;
 	if (mailer) {
 		mailer.sendMail({
 			from: config.devMail.from,
