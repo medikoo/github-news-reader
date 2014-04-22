@@ -1,6 +1,6 @@
 'use strict';
 
-var config   = require('../../env')
+var config   = require('../env')
 
   , mailer, subjectPrefix;
 

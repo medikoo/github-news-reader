@@ -21,6 +21,6 @@
     "nodemailer": "0.3.x"
   },
   "scripts": {
-    "start": "node ./lib/server/server.js"
+    "start": "node ./server/server.js"
   }
 }

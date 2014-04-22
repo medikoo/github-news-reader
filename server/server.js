@@ -5,10 +5,10 @@ Error.stackTraceLimit = Infinity;
 var resolve      = require('path').resolve
   , createServer = require('http').createServer
   , StaticServer = require('node-static').Server
-  , config       = require('../../env')
+  , config       = require('../env')
   , webmake      = require('./webmake')
 
-  , root = resolve(__dirname, '../../')
+  , root = resolve(__dirname, '../')
 
   , server, staticServer;
 

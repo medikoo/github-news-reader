@@ -2,7 +2,7 @@
 
 var find    = require('es5-ext/lib/Array/prototype/find')
   , forEach = require('es5-ext/lib/Object/for-each')
-  , config  = require('../../env')
+  , config  = require('../env')
   , data    = require('./data')
   , webmake = require('./webmake')
   , socket  = require('socket.io').listen(require('./server')).sockets

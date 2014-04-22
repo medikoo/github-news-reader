@@ -13,7 +13,7 @@ var isArray      = Array.isArray
   , writeFile    = promisify(require('fs').writeFile)
   , webmake      = require('webmake')
 
-  , data, root = resolve(__dirname, '../../'), build, inProgress;
+  , data, root = resolve(__dirname, '../'), build, inProgress;
 
 module.exports = function self(save) {
 	if (save && inProgress) {
