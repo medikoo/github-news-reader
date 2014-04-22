@@ -8,7 +8,7 @@ var isArray = Array.isArray
   , map     = require('es5-ext/object/map')
   , ee      = require('event-emitter')
 
-  , markRead;
+  , markRead, data;
 
 markRead = function () {
 	if (!this.read) {
@@ -17,7 +17,7 @@ markRead = function () {
 	}
 };
 
-var data = JSON.parse("%RSS%");
+data = JSON.parse("%RSS%");
 
 console.log("DATA", data);
 
