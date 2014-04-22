@@ -18,8 +18,9 @@ var isFunction = require('es5-ext/function/is-function')
   , reURI = new RegExp('(?:http|https):\\/\\/(?:\\w+:{0,1}\\w*@)?(?:\\S+)' +
 		'(:[0-9]+)?(?:\\/|\\/(?:[\\w#!:.?+=&%@!\\-\\/]))?', 'gi')
 
-  , process, fixLinks, sort, parse, parseUser, toHTML, titleFromAttr
-  , titleFromBlockquote, bodyFromAPI, log, logAPIError, handleOpenIssue;
+  , process, fixLinks, sort, parse, parseUser, toHTML, titleFromAttr, url
+  , titleFromBlockquote, bodyFromAPI, log, logAPIError, handleOpenIssue
+  , parser, data;
 
 require('memoizee/lib/ext/max-age');
 
@@ -223,10 +224,10 @@ process = {
 	watchevent: partial.call(parseUser, 'Watching', fixLinks)
 };
 
-var url = 'https://github.com/' + config.user + '.private.atom?token=' +
-	config.token
-  , parser = new Parser(url)
-  , data = {};
+url = 'https://github.com/' + config.user + '.private.atom?token=' +
+	config.token;
+parser = new Parser(url);
+data = {};
 
 module.exports = data;
 
