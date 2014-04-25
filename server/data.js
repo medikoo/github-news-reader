@@ -89,6 +89,7 @@ parseUser = function (name, normalize, article) {
 };
 
 toHTML = function (str) {
+	if (!str) return '';
 	return str.split('\n').map(function (str) {
 		var cls;
 		if (startsWith.call(str, '>')) {
