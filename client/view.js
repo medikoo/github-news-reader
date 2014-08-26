@@ -26,8 +26,12 @@ articleDOM = memoize(function (article) {
 			this.b(article.author), ' at ' +
 			format.call(new Date(Date.parse(article.date)), '%Y-%m-%d %H:%M:%S')),
 		body = this.div({ class: 'body' })())();
-	body.innerHTML = article.description
-		? article.description.replace(/<a href=/g, '<a target="_blank" href=') : '';
+	if (article.description) {
+		body.innerHTML = article.description.replace(/<a href=/g, '<a target="_blank" href=')
+			.replace('/<script/g', '<scipt');
+	} else {
+		body.innerHTML = '';
+	}
 	return el;
 }.bind(domjs.map));
 
