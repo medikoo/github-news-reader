@@ -38,8 +38,13 @@ actions = {
 
 		console.log("Save as ignored \"" + path.join('|') + "\"", name);
 		path.forEach(function (name) {
+			if (!scope) return;
 			scope = scope[name];
 		});
+		if (!scope) {
+			console.error("!Not found! \"" + path.join('|') + "\"", name);
+			return;
+		}
 		scope[name] = false;
 
 		if (!config.dev) webmake(true);
