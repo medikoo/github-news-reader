@@ -116,7 +116,7 @@ document.body.appendChild(domjs.build(function () {
 						toArray(value, self, null, lcSort)))();
 					--nest;
 					value.on('update', function () {
-						if (!count(this)) {
+						if (!count(this) && el.parentNode) {
 							el.parentNode.removeChild(el);
 						}
 					});
