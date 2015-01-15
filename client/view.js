@@ -84,12 +84,12 @@ document.body.appendChild(domjs.build(function () {
 			document.documentElement.offsetHeight) + 'px';
 	};
 
-	section({ 'class': 'aside' },
-		ul({ 'class': 'nest-' + nest },
+	section({ class: 'aside' },
+		ul({ class: 'nest-' + nest },
 			toArray(data, function self(value, key, context) {
 				var el, len;
 				if (isArray(value)) {
-					el = li({ 'class': 'feed' }, a({ onclick: load.bind(value) },
+					el = li({ class: 'feed' }, a({ onclick: load.bind(value) },
 						(last.call(value).headTitle || key) + "\u00a0(",
 						(len = _text(value.filter(not.call(pluck('read'))).length)),
 						")"))();
@@ -112,7 +112,7 @@ document.body.appendChild(domjs.build(function () {
 						reset();
 					});
 				} else {
-					el = li(h3(key), ul({ 'class': 'nest-' + (++nest) },
+					el = li(h3(key), ul({ class: 'nest-' + (++nest) },
 						toArray(value, self, null, lcSort)))();
 					--nest;
 					value.on('update', function () {
@@ -123,12 +123,12 @@ document.body.appendChild(domjs.build(function () {
 				}
 				return el;
 			}, null, lcSort)));
-	container = section({ 'class': 'content' },
+	container = section({ class: 'content' },
 		content = div(
-			p({ 'class': 'controls' },
+			p({ class: 'controls' },
 				input({ type: 'button', value: 'Unsubscribe', onclick: ignore })),
 			articles = ul(),
-			p({ 'class': 'controls' },
+			p({ class: 'controls' },
 				input({ type: 'button', value: 'Unsubscribe', onclick: ignore }))
 		)())();
 
