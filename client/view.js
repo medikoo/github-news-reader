@@ -42,9 +42,7 @@ document.body.appendChild(domjs.build(function () {
 	reset = function () {
 		scope = data;
 		while (!isArray(scope)) {
-			if (!(scope = scope[keys(scope).sort(lcSort)[0]])) {
-				return;
-			}
+			if (!(scope = scope[keys(scope).sort(lcSort)[0]])) return;
 		}
 		load.call(scope);
 	};
@@ -67,9 +65,7 @@ document.body.appendChild(domjs.build(function () {
 				return true;
 			}
 		});
-		offsets = els.map(function (el) {
-			return el.offsetTop + 60;
-		});
+		offsets = els.map(function (el) { return el.offsetTop + 60; });
 	};
 
 	ignore = function () {
@@ -94,18 +90,14 @@ document.body.appendChild(domjs.build(function () {
 						(len = _text(value.filter(not.call(pluck('read'))).length)),
 						")"))();
 					value.on('select', function () {
-						if (selected) {
-							selected.classList.remove('selected');
-						}
+						if (selected) selected.classList.remove('selected');
 						el.classList.add('selected');
 						selected = el;
 					});
 					value.on('update', function () {
 						var rlen = this.filter(not.call(pluck('read'))).length;
 						len.data = rlen;
-						if (!rlen) {
-							el.parentNode.removeChild(el);
-						}
+						if (!rlen) el.parentNode.removeChild(el);
 					});
 					value.on('ignore', function () {
 						if (el.parentNode) el.parentNode.removeChild(el);
@@ -116,9 +108,7 @@ document.body.appendChild(domjs.build(function () {
 						toArray(value, self, null, lcSort)))();
 					--nest;
 					value.on('update', function () {
-						if (!count(this) && el.parentNode) {
-							el.parentNode.removeChild(el);
-						}
+						if (!count(this) && el.parentNode) el.parentNode.removeChild(el);
 					});
 				}
 				return el;
