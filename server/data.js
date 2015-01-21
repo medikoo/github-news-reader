@@ -107,8 +107,7 @@ toHTML = function (str) {
 };
 
 titleFromAttr = function (article) {
-	var match = article.description
-		.match(/<a href="[\0-!#-\uffff]+" title="([\0-!#-\uffff]+)">/);
+	var match = article.description.match(/title="([\0-!#-\uffff]+)">/);
 	if (match) article.headTitle = decode(match[1]);
 	else log("Could not parse title", article.description);
 };
