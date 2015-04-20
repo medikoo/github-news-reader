@@ -5,7 +5,7 @@ var config   = require('../env')
   , mailer, subjectPrefix;
 
 if (config.devMail) {
-	mailer = require('nodemailer').createTransport('SMTP', config.devMail);
+	mailer = require('nodemailer').createTransport(config.devMail);
 	if (config.devMail.subject) {
 		subjectPrefix = config.devMail.subject + ': ';
 	} else {
