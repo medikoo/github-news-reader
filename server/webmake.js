@@ -46,7 +46,7 @@ module.exports = function self(save) {
 		function (content) {
 			var index = content.indexOf('%RSS%');
 			content = content.slice(0, index) +
-				stringify(stringify(copy)).slice(1, -1) + content.slice(index + 5);
+				stringify(stringify(copy, null, '\t')).slice(1, -1) + content.slice(index + 5);
 			if (save) {
 				return writeFile(resolve(root, 'public/j/main.js'),
 					content)(function () {
