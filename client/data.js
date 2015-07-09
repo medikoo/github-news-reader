@@ -17,7 +17,7 @@ markRead = function () {
 	}
 };
 
-data = JSON.parse("%RSS%");
+data = ${ RSS };
 
 console.log("DATA", data);
 
