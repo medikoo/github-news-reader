@@ -97,7 +97,7 @@ document.body.appendChild(domjs.build(function () {
 					value.on('update', function () {
 						var rlen = this.filter(not.call(pluck('read'))).length;
 						len.data = rlen;
-						if (!rlen) el.parentNode.removeChild(el);
+						if (!rlen && el.parentNode) el.parentNode.removeChild(el);
 					});
 					value.on('ignore', function () {
 						if (el.parentNode) el.parentNode.removeChild(el);
