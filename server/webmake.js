@@ -13,6 +13,7 @@ var isArray      = Array.isArray
   , writeFile    = promisify(require('fs').writeFile)
   , webmake      = require('webmake')
 
+  , badChars = /\u2028/g
   , data, root = resolve(__dirname, '../'), inProgress
   , rssString = '${ RSS }';
 
@@ -46,7 +47,7 @@ module.exports = function self(save) {
 	return (inProgress = webmake(resolve(root, 'client/index.js'))(
 		function (content) {
 			var index = content.indexOf(rssString);
-			content = content.slice(0, index) + stringify(copy, null, '\t') +
+			content = content.slice(0, index) + stringify(copy, null, '\t').replace(badChars, '') +
 				content.slice(index + rssString.length);
 			if (save) {
 				return writeFile(resolve(root, 'public/j/main.js'),
