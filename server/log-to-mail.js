@@ -19,7 +19,7 @@ module.exports = function (subject, body) {
 			from: config.devMail.from,
 			to: config.devMail.to,
 			subject: subjectPrefix + subject,
-			body: body
+			text: body
 		}, function (err, response) {
 			if (err) {
 				console.error("Could not send email: " + err);
