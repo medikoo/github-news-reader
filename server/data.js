@@ -109,14 +109,14 @@ toHTML = function (str) {
 titleFromAttr = function (article) {
 	var match = article.description.match(/title="([\0-!#-\uffff]+)">/);
 	if (match) article.headTitle = decode(match[1]);
-	else log("Could not parse title", JSON.stringify(article));
+	else log("Could not parse title", article.description);
 };
 
 titleFromBlockquote = function (article) {
 	var match = article.description
 		.match(/<blockquote>([\0-;=-\uffff]+)<\/blockquote>/);
 	if (match) article.headTitle = decode(match[1]);
-	else log("Could not parse title from blockquote", JSON.stringify(article));
+	else log("Could not parse title from blockquote", article.description);
 };
 
 bodyFromAPI = function (article) {
