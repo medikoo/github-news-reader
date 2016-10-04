@@ -148,7 +148,7 @@ handleOpenIssue = function (article, match) {
 	if (contains.call(article.title, 'opened issue') ||
 			contains.call(article.title, 'opened pull request')) {
 		data = match[1].split('/');
-		github.issues.getRepoIssue({
+		github.issues.getForRepo({
 			user: data[0],
 			repo: data[1],
 			number: match[2]
