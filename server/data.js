@@ -7,7 +7,7 @@ var isFunction = require('es5-ext/function/is-function')
   , contains   = require('es5-ext/string/#/contains')
   , startsWith = require('es5-ext/string/#/starts-with')
   , memoize    = require('memoizee/lib/primitive')
-  , github     = new (require('github'))({ version: "3.0.0" })
+  , GithubApi  = require('github')
   , decode     = require('ent').decode
   , config     = require('../env')
   , logToMail  = require('./log-to-mail')
@@ -17,6 +17,7 @@ var isFunction = require('es5-ext/function/is-function')
   , reType = /^tag:github\.com,\d+:([A-Za-z0-9]+)\/\d+$/
   , reURI = new RegExp('(?:http|https):\\/\\/(?:\\w+:{0,1}\\w*@)?(?:\\S+)' +
 		'(:[0-9]+)?(?:\\/|\\/(?:[\\w#!:.?+=&%@!\\-\\/]))?', 'gi')
+  , github = new GithubApi()
 
   , process, fixLinks, sort, parse, parseUser, toHTML, titleFromAttr, url
   , titleFromBlockquote, bodyFromAPI, log, logAPIError, handleOpenIssue
