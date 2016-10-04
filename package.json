@@ -11,7 +11,7 @@
     "deferred": "^0.7.5",
     "feedparser": "^1.1.5",
     "github": "^3.1.1",
-    "memoizee": "^0.2",
+    "memoizee": "^0.4.1",
     "request": "^2.75",
     "socket.io": "^1.4.8",
     "st": "^1.2",

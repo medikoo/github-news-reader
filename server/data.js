@@ -6,7 +6,7 @@ var isFunction = require('es5-ext/function/is-function')
   , isObject   = require('es5-ext/object/is-object')
   , contains   = require('es5-ext/string/#/contains')
   , startsWith = require('es5-ext/string/#/starts-with')
-  , memoize    = require('memoizee/lib/primitive')
+  , memoize    = require('memoizee')
   , GithubApi  = require('github')
   , decode     = require('ent').decode
   , config     = require('../env')
@@ -23,8 +23,6 @@ var isFunction = require('es5-ext/function/is-function')
   , titleFromBlockquote, bodyFromAPI, log, logAPIError, handleOpenIssue
   , parser, data;
 
-require('memoizee/lib/ext/max-age');
-
 sort = function (a, b) { return Date.parse(a.date) - Date.parse(b.date); };
 
 log = function (subject, body) {
@@ -38,7 +36,7 @@ if (config.auth) github.authenticate(config.auth);
 
 logAPIError = memoize(function (message, article, err) {
 	log("API responded with an error", article.link + ' ' + err);
-}, { length: 1, maxAge: 15 * 60 * 1000 });
+}, { length: 1, maxAge: 15 * 60 * 1000, primitive: true });
 
 fixLinks = function (article) {
 	article.description =
