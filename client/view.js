@@ -12,7 +12,7 @@ var isArray = Array.isArray
   , toArray = require('es5-ext/object/to-array')
   , memoize = require('memoizee')
   , lcSort  = call.bind(require('es5-ext/string/#/case-insensitive-compare'))
-  , domjs   = require('domjs/lib/html5')(document)
+  , domjs   = require('domjs')(document)
   , data    = require('./data')
 
   , articleDOM;
@@ -25,7 +25,7 @@ articleDOM = memoize(function (article) {
 		!article.skipAuthor && this.div({ class: 'author' },
 			this.b(article.author), ' at ' +
 			format.call(new Date(Date.parse(article.date)), '%Y-%m-%d %H:%M:%S')),
-		body = this.div({ class: 'body' })())();
+		body = this.div({ class: 'body' }));
 	if (article.description) {
 		body.innerHTML = article.description.replace(/<a href=/g, '<a target="_blank" href=')
 			.replace('/<script/g', '<scipt');
@@ -33,9 +33,9 @@ articleDOM = memoize(function (article) {
 		body.innerHTML = '';
 	}
 	return el;
-}.bind(domjs.map));
+}.bind(domjs.ns));
 
-document.body.appendChild(domjs.build(function () {
+document.body.appendChild(domjs.collect(function () {
 	var nest = 0, container, content, load, selected, fixPadding
 	  , offsets = [], current, scope, articles, ignore, reset;
 
@@ -51,9 +51,9 @@ document.body.appendChild(domjs.build(function () {
 		var els;
 		current = this;
 		els = this.map(articleDOM);
-		articles().innerHTML = '';
+		articles.innerHTML = '';
 		if (!els.length) return;
-		articles(els);
+		articles.extend(els);
 		if (!els[0].offsetTop) {
 			setTimeout(load.bind(this), 10);
 			return;
@@ -80,15 +80,15 @@ document.body.appendChild(domjs.build(function () {
 			document.documentElement.offsetHeight) + 'px';
 	};
 
-	section({ class: 'aside' },
-		ul({ class: 'nest-' + nest },
+	this.section({ class: 'aside' },
+		this.ul({ class: 'nest-' + nest },
 			toArray(data, function self(value, key, context) {
 				var el, len;
 				if (isArray(value)) {
-					el = li({ class: 'feed' }, a({ onclick: load.bind(value) },
+					el = this.li({ class: 'feed' }, this.a({ onclick: load.bind(value) },
 						(last.call(value).headTitle || key) + "\u00a0(",
-						(len = _text(value.filter(not.call(pluck('read'))).length)),
-						")"))();
+						(len = this.text(value.filter(not.call(pluck('read'))).length)),
+						")"));
 					value.on('select', function () {
 						if (selected) selected.classList.remove('selected');
 						el.classList.add('selected');
@@ -104,23 +104,23 @@ document.body.appendChild(domjs.build(function () {
 						reset();
 					});
 				} else {
-					el = li(h3(key), ul({ class: 'nest-' + (++nest) },
-						toArray(value, self, null, lcSort)))();
+					el = this.li(this.h3(key), this.ul({ class: 'nest-' + (++nest) },
+						toArray(value, self, this, lcSort)));
 					--nest;
 					value.on('update', function () {
 						if (!count(this) && el.parentNode) el.parentNode.removeChild(el);
 					});
 				}
 				return el;
-			}, null, lcSort)));
-	container = section({ class: 'content' },
-		content = div(
-			p({ class: 'controls' },
-				input({ type: 'button', value: 'Unsubscribe', onclick: ignore })),
-			articles = ul(),
-			p({ class: 'controls' },
-				input({ type: 'button', value: 'Unsubscribe', onclick: ignore }))
-		)())();
+			}, this, lcSort)));
+	container = this.section({ class: 'content' },
+		content = this.div(
+			this.p({ class: 'controls' },
+				this.input({ type: 'button', value: 'Unsubscribe', onclick: ignore })),
+			articles = this.ul(),
+			this.p({ class: 'controls' },
+				this.input({ type: 'button', value: 'Unsubscribe', onclick: ignore }))
+		));
 
 	fixPadding();
 	window.onresize = fixPadding;
@@ -138,4 +138,4 @@ document.body.appendChild(domjs.build(function () {
 	// Show first
 	reset();
 
-}));
+}.bind(domjs.ns)));

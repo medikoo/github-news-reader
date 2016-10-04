@@ -15,6 +15,3 @@ predef+ __dirname, console, setInterval
 
 ./client
 predef+ console, io, location, document, setTimeout, window
-
-./client/view.js
-predef+ a, h3, div, input, li, p, section, ul, _text

@@ -4,7 +4,7 @@
   "description": "Reader for GitHub private News Feed",
   "version": "0.1.0",
   "dependencies": {
-    "domjs": "^0.2.3",
+    "domjs": "0.3",
     "ent": "^2.2",
     "es5-ext": "^0.10.12",
     "event-emitter": "^0.3.4",
