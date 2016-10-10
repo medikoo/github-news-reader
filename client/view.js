@@ -20,11 +20,11 @@ var isArray = Array.isArray
 articleDOM = memoize(function (article) {
 	var el, body;
 	el = this.li({ class: 'article' },
-		!article.skipTitle &&
-		this.h2(this.a({ href: article.link, target: '_blank' }, article.title)),
-		!article.skipAuthor && this.div({ class: 'author' },
-			this.b(article.author), ' at ' +
-			format.call(new Date(Date.parse(article.date)), '%Y-%m-%d %H:%M:%S')),
+			(!article.skipTitle || null) &&
+				this.h2(this.a({ href: article.link, target: '_blank' }, article.title)),
+			(!article.skipAuthor || null) && this.div({ class: 'author' },
+				this.b(article.author), ' at ' +
+				format.call(new Date(Date.parse(article.date)), '%Y-%m-%d %H:%M:%S')),
 		body = this.div({ class: 'body' }));
 	if (article.description) {
 		body.innerHTML = article.description.replace(/<a href=/g, '<a target="_blank" href=')
