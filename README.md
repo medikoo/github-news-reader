@@ -1,6 +1,6 @@
 # Github News Reader
 
-_Rough quick implementation for own purposes, tested with Node v0.6 and Google Chrome browser_
+_Rough quick implementation for own purposes, tested with Node v4 and Google Chrome browser_
 
 Groups articles into relative subjects and provides Google Reader like interface.
 Individual sections can be unsubscribed.
