@@ -1,42 +1,42 @@
-'use strict';
+"use strict";
 
-var isArray = Array.isArray
+let isArray = Array.isArray
   , call    = Function.prototype.call
   , max     = Math.max
   , keys    = Object.keys
-  , last    = require('es5-ext/array/#/last')
-  , format  = require('es5-ext/date/#/format')
-  , pluck   = require('es5-ext/function/pluck')
-  , not     = require('es5-ext/function/#/not')
-  , count   = require('es5-ext/object/count')
-  , toArray = require('es5-ext/object/to-array')
-  , memoize = require('memoizee')
-  , lcSort  = call.bind(require('es5-ext/string/#/case-insensitive-compare'))
-  , domjs   = require('domjs')(document)
-  , data    = require('./data')
+  , last    = require("es5-ext/array/#/last")
+  , format  = require("es5-ext/date/#/format")
+  , pluck   = require("es5-ext/function/pluck")
+  , not     = require("es5-ext/function/#/not")
+  , count   = require("es5-ext/object/count")
+  , toArray = require("es5-ext/object/to-array")
+  , memoize = require("memoizee")
+  , lcSort  = call.bind(require("es5-ext/string/#/case-insensitive-compare"))
+  , domjs   = require("domjs")(document)
+  , data    = require("./data")
 
   , articleDOM;
 
 articleDOM = memoize(function (article) {
-	var el, body;
-	el = this.li({ class: 'article' },
+	let el, body;
+	el = this.li({ class: "article" },
 			(!article.skipTitle || null) &&
-				this.h2(this.a({ href: article.link, target: '_blank' }, article.title)),
-			(!article.skipAuthor || null) && this.div({ class: 'author' },
-				this.b(article.author), ' at ' +
-				format.call(new Date(Date.parse(article.date)), '%Y-%m-%d %H:%M:%S')),
-		body = this.div({ class: 'body' }));
+				this.h2(this.a({ href: article.link, target: "_blank" }, article.title)),
+			(!article.skipAuthor || null) && this.div({ class: "author" },
+				this.b(article.author), ` at ${
+				format.call(new Date(Date.parse(article.date)), "%Y-%m-%d %H:%M:%S") }`),
+		body = this.div({ class: "body" }));
 	if (article.description) {
-		body.innerHTML = article.description.replace(/<a href=/g, '<a target="_blank" href=')
-			.replace('/<script/g', '<scipt');
+		body.innerHTML = article.description.replace(/<a href=/g, "<a target=\"_blank\" href=")
+			.replace("/<script/g", "<scipt");
 	} else {
-		body.innerHTML = '';
+		body.innerHTML = "";
 	}
 	return el;
 }.bind(domjs.ns));
 
 document.body.appendChild(domjs.collect(function () {
-	var nest = 0, container, content, load, selected, fixPadding
+	let nest = 0, container, content, load, selected, fixPadding
 	  , offsets = [], current, scope, articles, ignore, reset;
 
 	reset = function () {
@@ -48,86 +48,86 @@ document.body.appendChild(domjs.collect(function () {
 	};
 
 	load = function () {
-		var els;
+		let els;
 		current = this;
 		els = this.map(articleDOM);
-		articles.innerHTML = '';
+		articles.innerHTML = "";
 		if (!els.length) return;
 		articles.extend(els);
 		if (!els[0].offsetTop) {
 			setTimeout(load.bind(this), 10);
 			return;
 		}
-		this.emit('select');
-		this.some(function (el, i) {
+		this.emit("select");
+		this.some((el, i) => {
 			if (!el.read) {
-				container.scrollTop = max(els[i].offsetTop - ((i === 0) ? 50 : 20), 0);
+				container.scrollTop = max(els[i].offsetTop - (i === 0 ? 50 : 20), 0);
 				return true;
 			}
 		});
-		offsets = els.map(function (el) { return el.offsetTop + 60; });
+		offsets = els.map(el => el.offsetTop + 60);
 	};
 
 	ignore = function () {
-		if (current) current.emit('ignore');
+		if (current) current.emit("ignore");
 	};
 
 	fixPadding = function () {
-		content.style.paddingBottom = max(document.body.scrollHeight,
+		content.style.paddingBottom = `${ max(document.body.scrollHeight,
 			document.body.offsetHeight,
 			document.documentElement.clientHeight,
 			document.documentElement.scrollHeight,
-			document.documentElement.offsetHeight) + 'px';
+			document.documentElement.offsetHeight) }px`;
 	};
 
-	this.section({ class: 'aside' },
-		this.ul({ class: 'nest-' + nest },
+	this.section({ class: "aside" },
+		this.ul({ class: `nest-${ nest }` },
 			toArray(data, function self(value, key, context) {
-				var el, len;
+				let el, len;
 				if (isArray(value)) {
-					el = this.li({ class: 'feed' }, this.a({ onclick: load.bind(value) },
-						(last.call(value).headTitle || key) + "\u00a0(",
-						(len = this.text(value.filter(not.call(pluck('read'))).length)),
+					el = this.li({ class: "feed" }, this.a({ onclick: load.bind(value) },
+						`${ last.call(value).headTitle || key }\u00a0(`,
+						len = this.text(value.filter(not.call(pluck("read"))).length),
 						")"));
-					value.on('select', function () {
-						if (selected) selected.classList.remove('selected');
-						el.classList.add('selected');
+					value.on("select", () => {
+						if (selected) selected.classList.remove("selected");
+						el.classList.add("selected");
 						selected = el;
 					});
-					value.on('update', function () {
-						var rlen = this.filter(not.call(pluck('read'))).length;
+					value.on("update", function () {
+						const rlen = this.filter(not.call(pluck("read"))).length;
 						len.data = rlen;
 						if (!rlen && el.parentNode) el.parentNode.removeChild(el);
 					});
-					value.on('ignore', function () {
+					value.on("ignore", () => {
 						if (el.parentNode) el.parentNode.removeChild(el);
 						reset();
 					});
 				} else {
-					el = this.li(this.h3(key), this.ul({ class: 'nest-' + (++nest) },
+					el = this.li(this.h3(key), this.ul({ class: `nest-${ ++nest }` },
 						toArray(value, self, this, lcSort)));
 					--nest;
-					value.on('update', function () {
+					value.on("update", function () {
 						if (!count(this) && el.parentNode) el.parentNode.removeChild(el);
 					});
 				}
 				return el;
 			}, this, lcSort)));
-	container = this.section({ class: 'content' },
+	container = this.section({ class: "content" },
 		content = this.div(
-			this.p({ class: 'controls' },
-				this.input({ type: 'button', value: 'Unsubscribe', onclick: ignore })),
+			this.p({ class: "controls" },
+				this.input({ type: "button", value: "Unsubscribe", onclick: ignore })),
 			articles = this.ul(),
-			this.p({ class: 'controls' },
-				this.input({ type: 'button', value: 'Unsubscribe', onclick: ignore }))
+			this.p({ class: "controls" },
+				this.input({ type: "button", value: "Unsubscribe", onclick: ignore }))
 		));
 
 	fixPadding();
 	window.onresize = fixPadding;
 
 	container.onscroll = function () {
-		var pos = container.scrollTop;
-		offsets.every(function (offset, i) {
+		const pos = container.scrollTop;
+		offsets.every((offset, i) => {
 			if (pos > offset) {
 				current[i].markRead();
 				return true;

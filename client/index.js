@@ -1,5 +1,5 @@
-'use strict';
+"use strict";
 
-require('./view');
+require("./view");
 
-require('./server');
+require("./server");
