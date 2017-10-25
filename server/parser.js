@@ -46,7 +46,7 @@ Parser.prototype = ee(
 				this.parser = new FeedParser();
 				this.parser.on("error", e => {
 					if (res.headers.status === "304 Not Modified") return;
-					log("Parse error", e.stack);
+					log.error("Parse error %o", e);
 				});
 				this.parser.on("readable", function () {
 					let article;
@@ -56,7 +56,7 @@ Parser.prototype = ee(
 				try {
 					this.parse(req);
 				} catch (e) {
-					log("PARSE ERR", e.stack);
+					log.error("PARSE ERR %o", e);
 					return;
 				}
 				this.emit("update");
