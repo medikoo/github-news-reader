@@ -15,7 +15,7 @@ let isArray      = Array.isArray
 
   , badChars = /\u2028/g
   , data, root = resolve(__dirname, "../"), inProgress
-  , rssString = "${ RSS }";
+  , rssString = "\"{ RSS }\"";
 
 module.exports = function self(save) {
 	if (save && inProgress) {
