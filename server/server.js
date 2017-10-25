@@ -2,6 +2,8 @@
 
 Error.stackTraceLimit = Infinity;
 
+require("log4/env/node");
+
 const { resolve }      = require("path")
     , { createServer } = require("http")
     , st               = require("st")
