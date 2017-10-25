@@ -43,26 +43,18 @@ const articleDOM = memoize(
 document.body.appendChild(
 	domjs.collect(
 		function () {
-			let nest = 0, content, selected, offsets = [], current, scope, articles;
+			let nest = 0
+			  , container = null
+			  , content
+			  , selected
+			  , offsets = []
+			  , current
+			  , scope
+			  , articles;
 
 			const ignore = function () {
 				if (current) current.emit("ignore");
 			};
-
-			const container = this.section(
-				{ class: "content" },
-				content = this.div(
-					this.p(
-						{ class: "controls" },
-						this.input({ type: "button", value: "Unsubscribe", onclick: ignore })
-					),
-					articles = this.ul(),
-					this.p(
-						{ class: "controls" },
-						this.input({ type: "button", value: "Unsubscribe", onclick: ignore })
-					)
-				)
-			);
 
 			const load = function () {
 				current = this;
@@ -154,6 +146,21 @@ document.body.appendChild(
 						},
 						this,
 						lcSort
+					)
+				)
+			);
+
+			container = this.section(
+				{ class: "content" },
+				content = this.div(
+					this.p(
+						{ class: "controls" },
+						this.input({ type: "button", value: "Unsubscribe", onclick: ignore })
+					),
+					articles = this.ul(),
+					this.p(
+						{ class: "controls" },
+						this.input({ type: "button", value: "Unsubscribe", onclick: ignore })
 					)
 				)
 			);
