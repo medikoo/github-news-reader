@@ -116,9 +116,17 @@ const toHTML = function (str) {
 };
 
 const titleFromAttr = function (article) {
-	const match = article.description.match(/title="([\0-!#-\uffff]+)"/);
-	if (match) article.headTitle = decode(match[1]);
-	else logArticleToMail("Could not parse title", article.description);
+	let match = article.description.match(/title="([\0-!#-\uffff]+)"/);
+	if (match) {
+		article.headTitle = decode(match[1]);
+		return;
+	}
+	match = article.description.match(/" aria-label="([\0-!#-\uffff]+)"/);
+	if (match) {
+		article.headTitle = decode(match[1]);
+		return;
+	}
+	logArticleToMail("Could not parse title", article.description);
 };
 
 const titleFromBlockquote = function (article) {
