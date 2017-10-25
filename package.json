@@ -20,7 +20,22 @@
   "optionalDependencies": {
     "nodemailer": "^2.6.4"
   },
+  "devDependencies": {
+    "eslint": "^4.9",
+    "eslint-config-medikoo": "^1.28"
+  },
+  "eslintConfig": {
+    "extends": "medikoo",
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 2017
+    }
+  },
   "scripts": {
+    "lint": "eslint .",
     "start": "node ./server/server.js"
   }
 }
