@@ -11,6 +11,7 @@
     "deferred": "^0.7.5",
     "feedparser": "^1.1.5",
     "github": "^3.1.1",
+    "log4": "^1.2",
     "memoizee": "^0.4.1",
     "request": "^2.75",
     "socket.io": "^1.4.8",
@@ -27,9 +28,6 @@
   "eslintConfig": {
     "extends": "medikoo",
     "root": true,
-    "env": {
-      "node": true
-    },
     "parserOptions": {
       "ecmaVersion": 2017
     }

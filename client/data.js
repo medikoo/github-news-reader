@@ -1,75 +1,75 @@
 "use strict";
 
-let isArray = Array.isArray
-  , pluck   = require("es5-ext/function/pluck")
-  , not     = require("es5-ext/function/#/not")
-  , count   = require("es5-ext/object/count")
-  , forEach = require("es5-ext/object/for-each")
-  , map     = require("es5-ext/object/map")
-  , ee      = require("event-emitter")
+const pluck   = require("es5-ext/function/pluck")
+    , not     = require("es5-ext/function/#/not")
+    , count   = require("es5-ext/object/count")
+    , forEach = require("es5-ext/object/for-each")
+    , map     = require("es5-ext/object/map")
+    , ee      = require("event-emitter")
+    , log     = require("log4").getNs("github-news-reader");
 
-  , markRead, data;
+const { isArray } = Array;
 
-markRead = function () {
+const markRead = function () {
 	if (!this.read) {
 		this.read = true;
 		this.emit("update", { type: "read" });
 	}
 };
 
-data = "{ RSS }";
+const data = "{ RSS }";
 
-console.log("DATA", data);
+log("RSS data %o", data);
 
-module.exports = exports = map(data, function self(data, name) {
-	if (isArray(data)) {
-		data = ee(data);
-		data.forEach(article => {
+module.exports = exports = map(data, function processItem(dataItem, repoName) {
+	if (isArray(dataItem)) {
+		dataItem = ee(dataItem);
+		dataItem.forEach(article => {
 			ee(article);
 			article.on("update", () => {
-				data.emit("update");
+				dataItem.emit("update");
 			});
 			article.markRead = markRead;
 		});
-		data.on("ignore", () => {
- delete exports[name];
-});
-		data.on("update", function () {
+		dataItem.on("ignore", () => {
+			delete exports[repoName];
+		});
+		dataItem.on("update", function () {
 			if (!this.filter(not.call(pluck("read"))).length) {
-				delete exports[name];
+				delete exports[repoName];
 			}
 		});
 	} else {
-		data = ee(map(data, self));
-		forEach(data, (obj, name) => {
+		dataItem = ee(map(dataItem, processItem));
+		forEach(dataItem, (obj, itemName) => {
 			if (isArray(obj)) {
 				obj.on("update", function () {
 					if (!this.filter(not.call(pluck("read"))).length) {
-						delete data[name];
-						data.emit("update");
+						delete dataItem[itemName];
+						dataItem.emit("update");
 					}
 				});
 				obj.on("ignore", () => {
-					delete data[name];
-					data.emit("update");
+					delete dataItem[itemName];
+					dataItem.emit("update");
 				});
 			} else {
 				obj.on("update", function () {
 					if (!count(this)) {
-						delete data[name];
-						data.emit("update");
+						delete dataItem[itemName];
+						dataItem.emit("update");
 					}
 				});
 			}
 		});
 	}
-	return data;
+	return dataItem;
 });
 
-forEach(exports, (obj, name) => {
+forEach(exports, (obj, objName) => {
 	obj.on("update", function () {
 		if (!count(this)) {
-			delete exports[name];
+			delete exports[objName];
 		}
 	});
 });

@@ -1,8 +1,9 @@
 "use strict";
 
-let config   = require("../env")
+const log    = require("log4").getNs("github-news-reader")
+    , config = require("../env");
 
-  , mailer, subjectPrefix;
+let mailer, subjectPrefix;
 
 if (config.devMail) {
 	mailer = require("nodemailer").createTransport(config.devMail);
@@ -15,20 +16,23 @@ if (config.devMail) {
 
 module.exports = function (subject, body) {
 	if (mailer) {
-		mailer.sendMail({
-			from: config.devMail.from,
-			to: config.devMail.to,
-			subject: subjectPrefix + subject,
-			text: body
-		}, (err, response) => {
-			if (err) {
-				console.error(`Could not send email: ${ err }`);
-				console.error(`${ subject }: ${ body }`);
-				return;
+		mailer.sendMail(
+			{
+				from: config.devMail.from,
+				to: config.devMail.to,
+				subject: subjectPrefix + subject,
+				text: body
+			},
+			err => {
+				if (err) {
+					log.error(`Could not send email: ${ err }`);
+					log.error(`${ subject }: ${ body }`);
+					return;
+				}
+				log("Email succesfully sent", subject, body);
 			}
-			console.log("Email succesfully sent", subject, body);
-		});
+		);
 	} else {
-		console.error(`${ subject }: ${ body }`);
+		log.error(`${ subject }: ${ body }`);
 	}
 };
