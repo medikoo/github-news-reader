@@ -6,7 +6,7 @@ const find    = require("es5-ext/array/#/find")
     , config  = require("../env")
     , data    = require("./data")
     , webmake = require("./webmake")
-    , socket  = require("socket.io").listen(require("./server")).sockets;
+    , io      = require("socket.io")(require("./server"));
 
 const actions = {
 	read(path) {
@@ -49,7 +49,7 @@ const actions = {
 	}
 };
 
-socket.on("connection", connectedSocket => {
+io.on("connection", connectedSocket => {
 	forEach(actions, (listener, name) => {
 		connectedSocket.on(name, listener);
 	});
