@@ -4,19 +4,19 @@
   "description": "Reader for GitHub private News Feed",
   "version": "0.1.0",
   "dependencies": {
-    "domjs": "0.3",
+    "domjs": "^0.3.2",
     "ent": "^2.2",
-    "es5-ext": "^0.10.12",
-    "event-emitter": "^0.3.4",
-    "deferred": "^0.7.5",
+    "es5-ext": "^0.10.35",
+    "event-emitter": "^0.3.5",
+    "deferred": "^0.7.8",
     "feedparser": "^1.1.5",
     "github": "^3.1.1",
     "log4": "^1.2",
-    "memoizee": "^0.4.1",
-    "request": "^2.75",
+    "memoizee": "^0.4.11",
+    "request": "^2.83",
     "socket.io": "^1.4.8",
-    "st": "^1.2",
-    "webmake": "^0.3.40"
+    "st": "^1.2.2",
+    "webmake": "^0.3.43"
   },
   "optionalDependencies": {
     "nodemailer": "^2.6.4"
